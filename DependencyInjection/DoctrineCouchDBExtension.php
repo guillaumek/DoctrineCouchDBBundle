@@ -159,6 +159,11 @@ class DoctrineCouchDBExtension extends AbstractDoctrineExtension
             'setProxyNamespace'           => '%doctrine_couchdb.odm.proxy_namespace%',
             'setAutoGenerateProxyClasses' => '%doctrine_couchdb.odm.auto_generate_proxy_classes%',
         );
+        
+        if(isset($documentManager["metadata_resolver_class"]) && $documentManager["metadata_resolver_class"]) {
+            $methods["setMetadataResolverImpl"] = new Reference('doctrine_couchdb.odm.'.$documentManager['name'].'_metadata_resolver');
+        }
+        
         foreach ($methods as $method => $arg) {
             $odmConfigDef->addMethodCall($method, array($arg));
         }

@@ -176,6 +176,7 @@ class Configuration implements ConfigurationInterface
                 ->append($this->getOdmCacheDriverNode('metadata_cache_driver'))
                 ->children()
                     ->scalarNode('connection')->end()
+                    ->booleanNode('metadata_resolver_class')->end()
                     ->scalarNode('auto_mapping')->defaultFalse()->end()
                 ->end()
                 ->fixXmlConfig('mapping')
